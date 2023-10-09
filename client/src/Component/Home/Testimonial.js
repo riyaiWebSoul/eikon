@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import test1 from 'file:///home/iwebsoul/Desktop/shravan%20projects/eikon/client/src/assets/images/auther-img.png';
 import axios from 'axios';
 
+
 export default function Testimonial() {
   const [jsonData, setJsonData] = useState({});
   const [review, setReview] = useState([]);
+  const [images, setImages] = useState([]);
+  const[imageList,setImagesList]=useState([])
 
   useEffect(() => {
     // Define the backend API endpoint URL
     const apiUrl = 'http://localhost:8080/PatientReview/';
-
+   
+   
     // Make an HTTP GET request to the backend
     axios
       .get(apiUrl)
@@ -17,8 +21,9 @@ export default function Testimonial() {
         const data = response.data;
         console.log(response.data);
         setJsonData(...data);
-        setReview(...data);
+        setReview(...data);      
       })
+      
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
@@ -58,11 +63,13 @@ export default function Testimonial() {
                           >
                             <div className="auther-con w-100 d-inline-block">
                               <figure className="mb-0 d-inline-block">
+                              
                                 <img
-                                  src={test1}
+                                  src={`http://localhost:8080/imageUploads/${item.image}`}
                                   alt="auther-img"
                                   className="img-fluid"
                                 />
+                             
                               </figure>
                               <div className="auther-title d-inline-block">
                                 <h4 className="text-white">

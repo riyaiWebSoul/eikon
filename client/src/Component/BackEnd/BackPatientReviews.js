@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,9 @@ function BackPatientReviews() {
   const [responseData, setResponseData] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [imageList, setImageList] = useState([]);
+  const [selectedImageName, setSelectedImageName] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
   const [userReview, setUserReview] = useState({
     testimonial: {
       title: "",
@@ -37,6 +40,10 @@ function BackPatientReviews() {
     image: "",
   });
 
+  useEffect(()=>{
+    handleGet();
+    handleGetImagesList()
+  },[])
   // Function to fetch data from the API
   const handleGet = async () => {
     try {
@@ -48,6 +55,7 @@ function BackPatientReviews() {
       setTitle(data.testimonial.title);
       setDescription(data.testimonial.description);
       setUserReview(data);
+  
     } catch (error) {
       console.error("Error making GET request:", error);
     }
@@ -102,13 +110,40 @@ function BackPatientReviews() {
       image: "",
     });
   };
+  const handleGetImagesList = async () => {
+    try {
+      // Make a GET request to retrieve the list of images
+      const imagesListResponse = await axios.get('http://localhost:8080/listImages');
+      const list = imagesListResponse.data;
 
+      // Update the state variable with the retrieved list of images
+      setImageList(list.images);
+    } catch (error) {
+      console.error('Error making GET request:', error);
+      // Handle errors here.
+    }
+  };
   // Function to edit a patient's details
   const handleEditPatient = (index) => {
     // Set the editing index and populate the form with the patient's data
     setEditingIndex(index);
     const editedPatient = userReview.userReview[index];
     setNewPatient({ ...editedPatient });
+  };
+  const handleImageClick = (imageName) => {
+    setSelectedImageName(imageName);
+
+    // Remove border from previously selected image
+    if (selectedImage) {
+      selectedImage.classList.remove('selected-image');
+    }
+
+    // Add border to the newly selected image
+    const newSelectedImage = document.querySelector(`[data-image-name="${imageName}"]`);
+    if (newSelectedImage) {
+      newSelectedImage.classList.add('selected-image');
+      setSelectedImage(newSelectedImage);
+    }
   };
 
   // Function to save edited patient details
@@ -149,6 +184,9 @@ function BackPatientReviews() {
       userReview: updatedUserReview,
     }));
   };
+  const handleImage =(index)=>{
+
+  }
 
   return (
     <div className="container">
@@ -159,9 +197,9 @@ function BackPatientReviews() {
         <div className="col-sm-6">
           <div className="btn-group ">
             {/* Button to trigger GET request */}
-            <button className="btn btn-primary m-1 " onClick={handleGet}>
+            {/* <button className="btn btn-primary m-1 " onClick={handleGet}>
               GET
-            </button>
+            </button> */}
             {/* Button to trigger UPDATE confirmation modal */}
             <button
               className="btn btn-success m-1"
@@ -170,14 +208,20 @@ function BackPatientReviews() {
               UPDATE
             </button>
             <button
-              className="btn btn-success m-1"
+              className="btn btn-primary m-1"
               onClick={handleAddPatient}
             >
-              New
+              Add
             </button>
-            <button className="btn btn-gray m-1" onClick={handleGoBack}>
+            <button
+              className="btn btn-primary m-1"
+              onClick={handleGetImagesList}
+            >
+              images
+            </button>
+            {/* <button className="btn btn-gray m-1" onClick={handleGoBack}>
               Back
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -271,6 +315,7 @@ function BackPatientReviews() {
                 >
                   Edit
                 </button>
+                
                 <button
                   className="btn btn-danger"
                   onClick={() => handleDeletePatient(index)}
@@ -281,6 +326,36 @@ function BackPatientReviews() {
             )}
           </div>
         ))}
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <div className="form-group">
+                <label>Images:</label>
+                <div className="row">
+                  {/* Display the list of images */}
+                  {imageList.map((item, index) => (
+                    <div key={index} className="col-12 col-md-2 ">
+                      <div
+                        className="card mb-2 imageListStyle"
+                        onClick={() => handleImageClick(item)}
+                        data-image-name={item} // Add data-image-name attribute
+                      >
+                        <img
+                          src={`http://localhost:8080/imageUploads/${item}`}
+                          alt={`Image ${index}`}
+                          className="card-img-top "
+                        />
+                        <div className="card-body">
+                          {/* Add your content here */}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Confirmation modal */}

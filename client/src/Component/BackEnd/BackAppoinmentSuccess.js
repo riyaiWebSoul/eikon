@@ -91,10 +91,10 @@ function BackAppointmentSuccess() {
         
         <div className="col-sm-6">
           <div className="btn-group">
-          
+{/*           
             <button className="btn btn-primary m-1" onClick={handleGet}>
               GET
-            </button>
+            </button> */}
             
            
           </div>

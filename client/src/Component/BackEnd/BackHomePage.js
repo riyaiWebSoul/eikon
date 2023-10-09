@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+ 
 
 
 function BackHomePage() {
-  // Initialize the React Router navigation hook
-  const navigate = useNavigate();
-
-  // Function to navigate back to the dashboard page
-  const handleGoBack = () => {
-    navigate('/backHome/backendDashboard/');
-  }
+  
 
   // State variables to store data retrieved from the API
   const [responseData, setResponseData] = useState(null);
@@ -174,22 +168,20 @@ const handleUploadImages=async()=>{
       <div className="row">
         <div className="col-sm-6">
           <div className="btn-group">
-            {/* Button to trigger the GET request */}
-            <button className="btn btn-primary m-1" onClick={handleGet}>
+            
+            {/* <button className="btn btn-primary m-1" onClick={handleGet}>
               GET
-            </button>
-            {/* Button to trigger the GET request for images list */}
-            <button className="btn btn-primary m-1" onClick={handleGetImagesList}>
+            </button> */}
+          
+            {/* <button className="btn btn-primary m-1" onClick={handleGetImagesList}>
               GET Images List
-            </button>
-            {/* Button to open the confirmation modal for UPDATE */}
+            </button> */}
+    
             <button className="btn btn-success m-1" onClick={openConfirmationModal}>
               UPDATE
             </button>
-            {/* Button to navigate back */}
-            <button className="btn btn-gray m-1" onClick={handleGoBack}>
-              Back
-            </button>
+         
+            
           </div>
         </div>
       </div>

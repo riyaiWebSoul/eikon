@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0251b3e1.css",
-    "main.js": "/static/js/main.bbf0f31f.js",
+    "main.css": "/static/css/main.e55e8806.css",
+    "main.js": "/static/js/main.27493207.js",
     "static/js/787.fcd88d78.chunk.js": "/static/js/787.fcd88d78.chunk.js",
     "static/media/measurement demo.mp4": "/static/media/measurement demo.87f6b268273b82cd76f9.mp4",
     "static/media/IDEATOR-FP (1).pdf": "/static/media/IDEATOR-FP (1).b63640c3c175e2a27c7a.pdf",
@@ -40,12 +40,12 @@
     "static/media/thankyou1.png": "/static/media/thankyou1.9e2210e1c42e6b75a43f.png",
     "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.1510cc4cf616b16bceac.woff2",
     "index.html": "/index.html",
-    "main.0251b3e1.css.map": "/static/css/main.0251b3e1.css.map",
-    "main.bbf0f31f.js.map": "/static/js/main.bbf0f31f.js.map",
+    "main.e55e8806.css.map": "/static/css/main.e55e8806.css.map",
+    "main.27493207.js.map": "/static/js/main.27493207.js.map",
     "787.fcd88d78.chunk.js.map": "/static/js/787.fcd88d78.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0251b3e1.css",
-    "static/js/main.bbf0f31f.js"
+    "static/css/main.e55e8806.css",
+    "static/js/main.27493207.js"
   ]
 }

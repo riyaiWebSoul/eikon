@@ -8,6 +8,7 @@ import BackServiceMedical from './BackServiceMedical';
 import BackFooter from './BackFooter';
 import BackPatientReviews from './BackPatientReviews';
 import BackHomePage from './BackHomePage';
+import BackendHealing from './BackendHealing';
 
 const BackendDashboard = () => {
   const navigate = useNavigate();
@@ -46,15 +47,18 @@ const BackendDashboard = () => {
           <div className="row justify-content-around p-3">
           <button className="btn " onClick={() => handleContentSelect('BackHomePage')}>Home Banner</button>
             <button className="btn " onClick={() => handleContentSelect('BackAbout')}>About</button>
-            <button className="btn" onClick={() => handleContentSelect('BackView')}>Enquiry</button>
             <button className="btn" onClick={() => handleContentSelect('BackFooter')}>Footer</button>
             <button className="btn" onClick={() => handleContentSelect('BackPatientReviews')}>Patient Review</button>
             <button className="btn" onClick={() => handleContentSelect('BackServiceMedical')}>ServiceMedical</button>
             <button className="btn" onClick={() => handleContentSelect('BackServiceMapingEcommerce')}>Maping Services</button>
-            <button className="btn" onClick={() => handleContentSelect('BackAppointmentSuccess')}>Booking Appointments</button>
-
+            <button className="btn" onClick={() => handleContentSelect('BackendHealing')}>Healing Touch</button>
             <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
             {/* Add more links/buttons for other routes as needed */}
+          </div>
+          <div  className="row justify-content-around">
+          <button className="btn" onClick={() => handleContentSelect('BackView')}>Enquiry</button>
+          <button className="btn" onClick={() => handleContentSelect('BackAppointmentSuccess')}>Booking Appointments</button>
+
           </div>
       <h3 className="text-center ">Welcome to Eikon BackEnd </h3>
 
@@ -67,6 +71,8 @@ const BackendDashboard = () => {
             {activeContent === 'BackServiceMapingEcommerce' && <BackServiceMapingEcommerce />}
             {activeContent === 'BackAppointmentSuccess' && <BackAppointmentSuccess />}
             {activeContent === 'BackHomePage' && <BackHomePage />}
+            {activeContent === 'BackendHealing' && <BackendHealing/>}
+
 
           </div>
         </div>

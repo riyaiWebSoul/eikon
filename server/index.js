@@ -42,7 +42,11 @@ server.use(morgan('default'));
 
 // Serve static files from the 'public' directory
 server.use(express.static('public'));
-server.use(cors());
+server.use(cors({
+  origin:["https://deploy-mean-1whq.vercel.app"],
+  methods:["POST","GET"],
+  credentials:true
+}));
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

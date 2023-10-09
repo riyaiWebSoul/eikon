@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 
 
@@ -76,7 +76,9 @@ function BackServiceMapingEcommerce() {
       // Handle errors here.
     }
   };
-
+useEffect(()=>{
+  handleGet()
+})
   return (
     <div className='container'>
       <h2 className='text-center p-5'> Medical MapingEcommerce </h2>
@@ -87,9 +89,9 @@ function BackServiceMapingEcommerce() {
             {/* <button className="btn btn-primary m-1" onClick={handlePost}>
               POST
             </button> */}
-            <button className="btn btn-primary m-1 " onClick={handleGet}>
+            {/* <button className="btn btn-primary m-1 " onClick={handleGet}>
               GET
-            </button>
+            </button> */}
             {/* <button className="btn btn-danger m-1" onClick={handleDelete}>
               DELETE
             </button> */}
