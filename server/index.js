@@ -53,7 +53,10 @@ db.once('open', () => {
 // Configure Multer for handling file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'images'));
+    // Ensure the destination directory exists and is writable
+    const destDir = path.join(__dirname, 'public', 'images');
+    fs.mkdirSync(destDir, { recursive: true }); // Create directory if it doesn't exist
+    cb(null, destDir);
   },
   filename: (req, file, cb) => {
     const timestamp = Date.now();
@@ -108,15 +111,15 @@ server.get('/listImages', (req, res) => {
   });
 });
 
-
-  server.post('/imageUpload', upload.single('image'), (req, res) => {
-    if (!req.file) {
-      return res.status(400).send('No file uploaded.');
-    }
+server.post('/imageUpload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
 
   // Get the image name from the uploaded file's filename
   const imageName = req.file.filename;
-console.log(imageName)
+  console.log(imageName);
+
   // Add the image name to the imageUrls array
   imageUrls.push(imageName);
 
@@ -126,8 +129,7 @@ console.log(imageName)
   // You can do further processing with the uploaded file here
   // For now, just send a success response
   res.send('File uploaded successfully.');
-}
-);
+});
 
 server.delete('/deleteImage/:filename', (req, res) => {
   const filename = req.params.filename;
@@ -148,7 +150,6 @@ server.delete('/deleteImage/:filename', (req, res) => {
     res.json({ message: 'Image deleted successfully' });
   });
 });
-
 
 // Start the server on port 8080
 async function startServer() {
