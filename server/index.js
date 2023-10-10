@@ -26,13 +26,15 @@ const PORT = process.env.PORT || 8080;
 // Connect to the MongoDB database
 async function connectToDatabase() {
   try {
-    await mongoose.connect('mongodb+srv://iwebsoul:ZkK7vXCmICDXqsM6@cluster0.meodf1o.mongodb.net/', {
+    await mongoose.connect('mongodb+srv://iwebsoul:ZkK7vXCmICDXqsM6@cluster0.meodf1o.mongodb.net/your-database-name', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log('Database connected');
+    return mongoose.connection; // Return the connection object
   } catch (err) {
     console.error('Error connecting to the database:', err);
+    throw err;
   }
 }
 
@@ -47,12 +49,6 @@ server.use(cors({
   methods:["POST","GET"],
   credentials:true
 }));
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
 
 // Configure Multer for handling file uploads
 const storage = multer.diskStorage({
@@ -88,7 +84,7 @@ async function setupRoutes() {
   server.use('/images', express.static('public/images'));
 
   // Add a route to fetch data from MongoDB
-  server.get('/http://localhost:8080/', async (req, res) => {
+  server.get('/getDataFromMongoDB', async (req, res) => {
     try {
       const db = await connectToDatabase(); // Connect to the database
       const collection = db.collection('eikon'); // Replace with your collection name
