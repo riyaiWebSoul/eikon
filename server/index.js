@@ -43,7 +43,7 @@ server.use(morgan('default'));
 // Serve static files from the 'public' directory
 server.use(express.static('public'));
 server.use(cors({
-  origin:["https://eikon-server-e2xhlyyl1-riya-surenas-projects.vercel.app"],
+  origin:["https://my-deployment-my-username.vercel.app/_logs"],
   methods:["POST","GET"],
   credentials:true
 }));
