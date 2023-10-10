@@ -9,18 +9,8 @@ const fs = require('fs');
 
 const HomeRouter = require('./routes/home');
 const productRouter = require('./routes/product');
-const userRouter = require('./routes/user');
-const AboutRouter = require('./routes/about');
-const AppointmentRouter = require('./routes/appointment');
-const MedicalRouter = require('./routes/medical');
-const MapingEcommerceRouter = require('./routes/MapingEcommerce');
-const FooterRouter = require('./routes/footer');
-const EnquiryRouter = require('./routes/enquiry');
-const HealingTouch = require('./routes/healingTouch');
-const PatientReview = require('./routes/PatientReview');
-const DrList = require('./routes/drList');
-const LoginIdRouter = require('./routes/loginId');
-const ImageUploadRouter = require('./routes/imagesUpload');
+// ... (Other route imports)
+
 const PORT = process.env.PORT || 8080;
 
 // Connect to the MongoDB database
@@ -43,9 +33,9 @@ server.use(morgan('default'));
 // Serve static files from the 'public' directory
 server.use(express.static('public'));
 server.use(cors({
-  origin:["https://my-deployment-my-username.vercel.app/_logs"],
-  methods:["POST","GET"],
-  credentials:true
+  origin: ["https://my-deployment-my-username.vercel.app/_logs"],
+  methods: ["POST", "GET"],
+  credentials: true
 }));
 
 const db = mongoose.connection;
@@ -57,7 +47,19 @@ db.once('open', () => {
 // Configure Multer for handling file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'images'));
+    const uploadPath = path.join(__dirname, 'public', 'images');
+
+    // Check if the destination directory exists, create it if not
+    if (!fs.existsSync(uploadPath)) {
+      try {
+        fs.mkdirSync(uploadPath, { recursive: true });
+      } catch (err) {
+        console.error('Error creating directory:', err);
+        return cb(err, null);
+      }
+    }
+
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const timestamp = Date.now();
@@ -72,23 +74,10 @@ const upload = multer({ storage });
 async function setupRoutes() {
   server.use('/imageUploads', express.static('public/images'));
   server.use('/products', productRouter.router);
-  server.use('/user', userRouter.router);
-  server.use('/about', AboutRouter.router);
-  server.use('/home', HomeRouter.router);
-  server.use('/appointments', AppointmentRouter.router);
-  server.use('/medical', MedicalRouter.router);
-  server.use('/MapingEcommerce', MapingEcommerceRouter.router);
-  server.use('/footer', FooterRouter.router);
-  server.use('/enquiry', EnquiryRouter.router);
-  server.use('/healingTouch', HealingTouch.router);
-  server.use('/PatientReview', PatientReview.router);
-  server.use('/drList', DrList.router);
-  server.use('/imageUpload', ImageUploadRouter.router);
-  server.use('/loginId', LoginIdRouter.router);
-  server.use('/images', express.static('public/images'));
+  // ... (Other route setups)
 
   // Add a route to fetch data from MongoDB
-  server.get('/http://localhost:8080/', async (req, res) => {
+  server.get('/', async (req, res) => {
     try {
       const db = await connectToDatabase(); // Connect to the database
       const collection = db.collection('eikon'); // Replace with your collection name
@@ -103,6 +92,8 @@ async function setupRoutes() {
       res.status(500).json({ error: 'Error fetching data from MongoDB' });
     }
   });
+
+  // ... (Other routes)
 }
 
 const imageUrls = [];
