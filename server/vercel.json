@@ -1,12 +1,14 @@
 {
-    "version":2,
-    "builds":[
-        {   "src":"*.js","use":"@vercel/node"}
+    "version": 2,
+    "routes": [
+      { "src": "/imageUploads/(.*)", "dest": "/imageUploads/$1" },
+      { "src": "/products/(.*)", "dest": "/products/$1" },
+      { "src": "/user/(.*)", "dest": "/user/$1" },
+      
+      { "src": "/(.*)", "dest": "/" }  
     ],
-    "routes":[
-        {
-            "src":"/(.*)",
-            "dest":"/"
-        }
+    "builds": [
+      { "src": "*.js", "use": "@vercel/node" }
     ]
-}
+  }
+  
