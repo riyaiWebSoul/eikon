@@ -9,8 +9,18 @@ const fs = require('fs');
 
 const HomeRouter = require('./routes/home');
 const productRouter = require('./routes/product');
-// ... (Other route imports)
-
+const userRouter = require('./routes/user');
+const AboutRouter = require('./routes/about');
+const AppointmentRouter = require('./routes/appointment');
+const MedicalRouter = require('./routes/medical');
+const MapingEcommerceRouter = require('./routes/MapingEcommerce');
+const FooterRouter = require('./routes/footer');
+const EnquiryRouter = require('./routes/enquiry');
+const HealingTouch = require('./routes/healingTouch');
+const PatientReview = require('./routes/PatientReview');
+const DrList = require('./routes/drList');
+const LoginIdRouter = require('./routes/loginId');
+const ImageUploadRouter = require('./routes/imagesUpload');
 const PORT = process.env.PORT || 8080;
 
 // Connect to the MongoDB database
@@ -33,9 +43,9 @@ server.use(morgan('default'));
 // Serve static files from the 'public' directory
 server.use(express.static('public'));
 server.use(cors({
-  origin: ["https://my-deployment-my-username.vercel.app/_logs"],
-  methods: ["POST", "GET"],
-  credentials: true
+  origin:["https://deploy-mean-1whq.vercel.app"],
+  methods:["POST","GET"],
+  credentials:true
 }));
 
 const db = mongoose.connection;
@@ -46,20 +56,15 @@ db.once('open', () => {
 
 // Configure Multer for handling file uploads
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, 'public', 'images');
-
-    // Check if the destination directory exists, create it if not
-    if (!fs.existsSync(uploadPath)) {
-      try {
-        fs.mkdirSync(uploadPath, { recursive: true });
-      } catch (err) {
-        console.error('Error creating directory:', err);
-        return cb(err, null);
-      }
+  destination: async (req, file, cb) => {
+    const destinationPath = path.join(__dirname, 'public', 'images');
+    try {
+      await fs.promises.mkdir(destinationPath, { recursive: true });
+      cb(null, destinationPath);
+    } catch (err) {
+      console.error('Error creating destination directory:', err);
+      cb(err);
     }
-
-    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const timestamp = Date.now();
@@ -74,12 +79,25 @@ const upload = multer({ storage });
 async function setupRoutes() {
   server.use('/imageUploads', express.static('public/images'));
   server.use('/products', productRouter.router);
-  // ... (Other route setups)
+  server.use('/user', userRouter.router);
+  server.use('/about', AboutRouter.router);
+  server.use('/home', HomeRouter.router);
+  server.use('/appointments', AppointmentRouter.router);
+  server.use('/medical', MedicalRouter.router);
+  server.use('/MapingEcommerce', MapingEcommerceRouter.router);
+  server.use('/footer', FooterRouter.router);
+  server.use('/enquiry', EnquiryRouter.router);
+  server.use('/healingTouch', HealingTouch.router);
+  server.use('/PatientReview', PatientReview.router);
+  server.use('/drList', DrList.router);
+  server.use('/imageUpload', ImageUploadRouter.router);
+  server.use('/loginId', LoginIdRouter.router);
+  server.use('/images', express.static('public/images'));
 
   // Add a route to fetch data from MongoDB
   server.get('/', async (req, res) => {
     try {
-      const db = await connectToDatabase(); // Connect to the database
+      await connectToDatabase(); // Connect to the database
       const collection = db.collection('eikon'); // Replace with your collection name
 
       // Query MongoDB to retrieve data (modify this query as needed)
@@ -92,8 +110,6 @@ async function setupRoutes() {
       res.status(500).json({ error: 'Error fetching data from MongoDB' });
     }
   });
-
-  // ... (Other routes)
 }
 
 const imageUrls = [];
@@ -120,7 +136,7 @@ server.get('/listImages', (req, res) => {
   });
 });
 
-server.post('/imageUpload', upload.single('image'), (req, res) => {
+server.post('/imageUpload', upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
@@ -140,24 +156,24 @@ server.post('/imageUpload', upload.single('image'), (req, res) => {
   res.send('File uploaded successfully.');
 });
 
-server.delete('/deleteImage/:filename', (req, res) => {
+server.delete('/deleteImage/:filename', async (req, res) => {
   const filename = req.params.filename;
   const imagePath = path.join(__dirname, 'public', 'images', filename);
 
   // Use the 'fs' module to delete the image file
-  fs.unlink(imagePath, (err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Error deleting image' });
-    }
+  try {
+    await fs.promises.unlink(imagePath);
+  } catch (err) {
+    return res.status(500).json({ error: 'Error deleting image' });
+  }
 
-    // Remove the deleted image URL from your 'imageUrls' array if needed
-    const index = imageUrls.indexOf(`/images/${filename}`);
-    if (index !== -1) {
-      imageUrls.splice(index, 1);
-    }
+  // Remove the deleted image URL from your 'imageUrls' array if needed
+  const index = imageUrls.indexOf(`/images/${filename}`);
+  if (index !== -1) {
+    imageUrls.splice(index, 1);
+  }
 
-    res.json({ message: 'Image deleted successfully' });
-  });
+  res.json({ message: 'Image deleted successfully' });
 });
 
 // Start the server on port 8080
