@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import test1 from 'file:///home/iwebsoul/Desktop/shravan%20projects/eikon/client/src/assets/images/auther-img.png';
+// import test1 from 'file:///home/iwebsoul/Desktop/shravan%20projects/eikon/client/src/assets/images/auther-img.png';
 import axios from 'axios';
 
 
 export default function Testimonial() {
   const [jsonData, setJsonData] = useState({});
   const [review, setReview] = useState([]);
-  const [images, setImages] = useState([]);
-  const[imageList,setImagesList]=useState([])
+  // const [images, setImages] = useState([]);
+  // const[imageList,setImagesList]=useState([])
 
   useEffect(() => {
     // Define the backend API endpoint URL

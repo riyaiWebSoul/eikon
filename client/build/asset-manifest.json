@@ -1,21 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.e55e8806.css",
-    "main.js": "/static/js/main.27493207.js",
+    "main.js": "/static/js/main.58b4dac5.js",
     "static/js/787.fcd88d78.chunk.js": "/static/js/787.fcd88d78.chunk.js",
-    "static/media/measurement demo.mp4": "/static/media/measurement demo.87f6b268273b82cd76f9.mp4",
     "static/media/IDEATOR-FP (1).pdf": "/static/media/IDEATOR-FP (1).b63640c3c175e2a27c7a.pdf",
     "static/media/spine.PNG": "/static/media/spine.9479652e8a6bbe903c26.PNG",
     "static/media/cervical.PNG": "/static/media/cervical.0a521da78de0de88e78d.PNG",
     "static/media/IDEATOR.pdf": "/static/media/IDEATOR.114f508bd3e3e6b20f04.pdf",
     "static/media/fa-solid-900.svg": "/static/media/fa-solid-900.22d6b1fc3e60b2ac2b8d.svg",
     "static/media/iDEATOR-DWS.pdf": "/static/media/iDEATOR-DWS.887e5a401a1330293726.pdf",
-    "static/media/run-png": "/static/media/run-20221119104940482.241433a1c45021227b95.png",
+    "static/media/run-png": "/static/media/run-20221119101612544.90be4369f6c53b310a73.png",
     "static/media/fa-brands-400.svg": "/static/media/fa-brands-400.1dd53f1d1c2e49d76c36.svg",
     "static/media/Balappa Kurale 1.bmp": "/static/media/Balappa Kurale 1.1a55551d9ae4953b7673.bmp",
     "static/media/Balappa Kurale 2.bmp": "/static/media/Balappa Kurale 2.a882627ee76814846e9e.bmp",
     "static/media/Medical12.jpeg": "/static/media/Medical12.e1bc1627d5b491e235f6.jpeg",
-    "static/media/team.jpeg": "/static/media/team.e5b83ba130242a3e0c8d.jpeg",
     "static/media/banner-overlay-img.png": "/static/media/banner-overlay-img.1bd45f6537cbbd8e9e70.png",
     "static/media/fa-solid-900.eot": "/static/media/fa-solid-900.8e50bc96d529516ab92c.eot",
     "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.e38aeeb5712b95f9b23d.ttf",
@@ -36,16 +34,15 @@
     "static/media/Logo.gif": "/static/media/Logo.d79ade67a065374b0c28.gif",
     "static/media/email.png": "/static/media/email.881b60a31371d6f1bc1b.png",
     "static/media/fa-regular-400.woff": "/static/media/fa-regular-400.c8a7341927c85738a31d.woff",
-    "static/media/auther-img.png": "/static/media/auther-img.a9b17bca40a130d7b28b.png",
     "static/media/thankyou1.png": "/static/media/thankyou1.9e2210e1c42e6b75a43f.png",
     "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.1510cc4cf616b16bceac.woff2",
     "index.html": "/index.html",
     "main.e55e8806.css.map": "/static/css/main.e55e8806.css.map",
-    "main.27493207.js.map": "/static/js/main.27493207.js.map",
+    "main.58b4dac5.js.map": "/static/js/main.58b4dac5.js.map",
     "787.fcd88d78.chunk.js.map": "/static/js/787.fcd88d78.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e55e8806.css",
-    "static/js/main.27493207.js"
+    "static/js/main.58b4dac5.js"
   ]
 }

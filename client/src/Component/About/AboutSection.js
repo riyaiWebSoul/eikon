@@ -1,9 +1,9 @@
    import React,{useState,useEffect} from 'react'
    import axios from 'axios'
-   import img1 from '../../assets/images/small-left-curve-img.png'
+   // import img1 from '../../assets/images/small-left-curve-img.png'
    import img2 from '../../assets/images/run-20221119101612544.png'
-   import img3 from '../../assets/images/small-right-curve-img.png'
-   import { Link } from 'react-router-dom'
+   // import img3 from '../../assets/images/small-right-curve-img.png'
+   // import { Link } from 'react-router-dom'
 
 
    export default function AboutSection() {

@@ -20,7 +20,7 @@ export default function MapingEcomm() {
      .catch((error) => {
        console.error('Error fetching data:', error);
      });
- }, []);
+ }, [jsonData]);
   return (
     <div>
       <section>

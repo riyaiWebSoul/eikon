@@ -5,7 +5,7 @@ import Testimonial from '../Home/Testimonial'
 import Portfolio from '../Home/Portfolio'
 import Counter from '../Home/Counter'
 import BookingAppointment from '../Home/BookingAppointment'
-import AboutHome from '../Home/AboutHome'
+// import AboutHome from '../Home/AboutHome'
 
 
 export default function Home() {

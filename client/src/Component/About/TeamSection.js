@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Team1 from '../../assets/images/team.jpeg';
+// import Team1 from '../../assets/images/team.jpeg';
 import axios from 'axios';
 
 export default function TeamSection() {
@@ -30,13 +30,13 @@ export default function TeamSection() {
       <div className="col-lg-4 col-md-4" key={drTeam.id}>
       
                                     <div className="professional-box-item text-center">
-                                        <a>
+                                        <a href="team-detail.html">
                                             <figure className="mb-0">
                                                 <img src={drTeam.image} alt="professional-box-img" className="img-fluid rounded-circle" />
                                             </figure>
                                             <h5>{drTeam.Name}</h5>
                                             <small className="d-block">{drTeam.Post}</small>
-                                            <span className="d-block">{drTeam.description}</span>
+                                            <span className="d-block">{drTeam.description}</span> 
                                         </a><div className="professional-box-social-list"><a href="team-detail.html">
                                         </a>
                                      

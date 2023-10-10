@@ -6,8 +6,8 @@ import img4 from '../../assets/images/Balappa Kurale 2.bmp'
 import img5 from '../../assets/images/spine.PNG'
 import img6 from '../../assets/images/run-20221119100130576.png'
 import img7 from '../../assets/images/run-20221119101612544.png'
-import img8 from '../../assets/images/run-20221119104940482.png'
-import video1 from '../../assets/images/measurement demo.mp4'
+// import img8 from '../../assets/images/run-20221119104940482.png'
+// import video1 from '../../assets/images/measurement demo.mp4'
 
 export default function Portfolio() {
     const [activeTab, setActiveTab] = useState('*'); // Default active tab
@@ -73,7 +73,7 @@ export default function Portfolio() {
                   
                   <div className='col-lg-3 col-md-4 col-12 mt-4' key={index}>
                         <img src={imgSrc}  width={'100%'}
-                  alt={`Image ${index + 1}`}
+                  alt={`${index + 1}`}
                   onClick={() => openModal(imgSrc)}
                   style={{ cursor: 'pointer' }} />
                     </div>
@@ -95,7 +95,7 @@ export default function Portfolio() {
       {modalImage && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content">
-            <img src={modalImage} alt="Modal Image" />
+            <img src={modalImage} alt="Modal" />
           </div>
         </div>
       )}
@@ -133,7 +133,7 @@ export default function Portfolio() {
                 <img
                   src={imgSrc}
                   width={'100%'}
-                  alt={`Image ${index + 1}`}
+                  alt={` ${index + 1}`}
                   onClick={() => openModal(imgSrc)}
                   style={{ cursor: 'pointer' }}
                 />
@@ -147,7 +147,7 @@ export default function Portfolio() {
       {modalImage && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content">
-            <img src={modalImage} alt="Modal Image" />
+            <img src={modalImage} alt="Modal" />
           </div>
         </div>
       )}
