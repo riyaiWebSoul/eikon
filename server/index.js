@@ -33,6 +33,7 @@ async function connectToDatabase() {
     console.log('Database connected');
   } catch (err) {
     console.error('Error connecting to the database:', err);
+    throw err; // Rethrow the error to handle it elsewhere if needed
   }
 }
 
@@ -93,26 +94,7 @@ async function setupRoutes() {
   server.use('/imageUpload', ImageUploadRouter.router);
   server.use('/loginId', LoginIdRouter.router);
   server.use('/images', express.static('public/images'));
-
-  // Add a route to fetch data from MongoDB
-  server.get('/', async (req, res) => {
-    try {
-      await connectToDatabase(); // Connect to the database
-      const collection = db.collection('eikon'); // Replace with your collection name
-
-      // Query MongoDB to retrieve data (modify this query as needed)
-      const data = await collection.find({}).toArray();
-
-      // Send the retrieved data as a JSON response
-      res.json({ data });
-    } catch (err) {
-      console.error('Error fetching data from MongoDB:', err);
-      res.status(500).json({ error: 'Error fetching data from MongoDB' });
-    }
-  });
 }
-
-const imageUrls = [];
 
 server.get('/listImages', (req, res) => {
   const imageDir = path.join(__dirname, 'public', 'images');
@@ -136,44 +118,21 @@ server.get('/listImages', (req, res) => {
   });
 });
 
-server.post('/imageUpload', upload.single('image'), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-
-  // Get the image name from the uploaded file's filename
-  const imageName = req.file.filename;
-  console.log(imageName);
-
-  // Add the image name to the imageUrls array
-  imageUrls.push(imageName);
-
-  // You can send back the updated imageUrls array as a response
-  res.json({ imageUrl: `/${imageName}` });
-
-  // You can do further processing with the uploaded file here
-  // For now, just send a success response
-  res.send('File uploaded successfully.');
-});
-
-server.delete('/deleteImage/:filename', async (req, res) => {
-  const filename = req.params.filename;
-  const imagePath = path.join(__dirname, 'public', 'images', filename);
-
-  // Use the 'fs' module to delete the image file
+// Fetch data from MongoDB
+server.get('/getDataFromMongoDB', async (req, res) => {
   try {
-    await fs.promises.unlink(imagePath);
+    await connectToDatabase(); // Connect to the database
+    const collection = db.collection('eikon'); // Replace with your collection name
+
+    // Query MongoDB to retrieve data (modify this query as needed)
+    const data = await collection.find({}).toArray();
+
+    // Send the retrieved data as a JSON response
+    res.json({ data });
   } catch (err) {
-    return res.status(500).json({ error: 'Error deleting image' });
+    console.error('Error fetching data from MongoDB:', err);
+    res.status(500).json({ error: 'Error fetching data from MongoDB' });
   }
-
-  // Remove the deleted image URL from your 'imageUrls' array if needed
-  const index = imageUrls.indexOf(`/images/${filename}`);
-  if (index !== -1) {
-    imageUrls.splice(index, 1);
-  }
-
-  res.json({ message: 'Image deleted successfully' });
 });
 
 // Start the server on port 8080
