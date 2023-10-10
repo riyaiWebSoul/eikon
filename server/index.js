@@ -50,19 +50,7 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// Configure Multer for handling file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'images'));
-  },
-  filename: (req, file, cb) => {
-    const timestamp = Date.now();
-    const fileName = `${timestamp}-${file.originalname}`;
-    cb(null, fileName);
-  },
-});
 
-const upload = multer({ storage });
 
 // Define your routes using async functions
 async function setupRoutes() {
