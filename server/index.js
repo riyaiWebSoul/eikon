@@ -66,6 +66,28 @@ const upload = multer({ storage });
 
 // Define your routes using async functions
 async function setupRoutes() {
+   const directoryPath = '/var/uploads';
+
+  fs.access(directoryPath, fs.constants.F_OK, (err) => {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        // Directory does not exist, so create it
+        fs.mkdir(directoryPath, { recursive: true }, (mkdirErr) => {
+          if (mkdirErr) {
+            console.error(`Error creating directory: ${mkdirErr}`);
+          } else {
+            console.log(`Directory created: ${directoryPath}`);
+          }
+        });
+      } else {
+        // Other error occurred (e.g., permission issues)
+        console.error(`Error checking directory existence: ${err}`);
+      }
+    } else {
+      // Directory already exists
+      console.log(`Directory already exists: ${directoryPath}`);
+    }
+  });
   server.use('/imageUploads', express.static('public/images'));
   server.use('/products', productRouter.router);
   server.use('/user', userRouter.router);
