@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 8080;
 // Connect to the MongoDB database
 async function connectToDatabase() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/eikon', {
+    await mongoose.connect('mongodb+srv://riyasurena137:R8Emr9gv8LkpVLNg@cluster0.q3ocj1n.mongodb.net/', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
