@@ -107,27 +107,7 @@ async function setupRoutes() {
 
 const imageUrls = [];
 
-server.get('/listImages', (req, res) => {
-  const imageDir = path.join(__dirname, 'public', 'images');
 
-  // Use the 'fs' module to read the contents of the directory
-  fs.readdir(imageDir, (err, files) => {
-    if (err) {
-      return res.status(500).json({ error: 'Error reading images directory' });
-    }
-
-    // Filter out only image files (you can adjust this filter as needed)
-    const imageFiles = files.filter((file) => {
-      const extname = path.extname(file);
-      return ['.jpg', '.jpeg', '.png', '.gif'].includes(extname.toLowerCase());
-    });
-
-    // Create an array of image URLs
-    const imageUrls = imageFiles.map((file) => `/${file}`);
-
-    res.json({ images: imageUrls });
-  });
-});
 
 // server.post('/imageUpload', upload.single('image'), (req, res) => {
 //   if (!req.file) {
