@@ -13,7 +13,7 @@
 
       useEffect(() => {
          // Define the backend API endpoint URL
-         const apiUrl = 'https://nwe-eikon.vercel.app/';
+         const apiUrl = 'http://localhost:8080/about/';
    
          // Make an HTTP GET request to the backend
          axios.get(apiUrl)
