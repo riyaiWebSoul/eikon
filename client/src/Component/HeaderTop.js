@@ -6,7 +6,7 @@ export default function HeaderTop() {
    const [jsonData, setJsonData] = useState([]);
 
    useEffect(() => {
-      const apiUrl = 'http://localhost:8080/footer/';
+      const apiUrl = 'https://eikon-api.onrender.com/footer/';
       // Make an HTTP GET request to the backend
       axios
         .get(apiUrl)
