@@ -8,7 +8,7 @@ export default function TeamSection() {
 
   useEffect(() => {
     // Define the backend API endpoint URL
-    const apiUrl = 'http://localhost:8080/drList/';
+    const apiUrl = 'https://eikon-api.onrender.com/drList/';
 
     // Make an HTTP GET request to the backend
     axios
