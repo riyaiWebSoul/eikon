@@ -10,7 +10,7 @@ export default function Counter() {
   const [count, setCount] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:8080/healingTouch/';
+    const apiUrl = 'https://eikon-api.onrender.com/healingTouch/';
 
     axios.get(apiUrl)
       .then(({ data }) => {
