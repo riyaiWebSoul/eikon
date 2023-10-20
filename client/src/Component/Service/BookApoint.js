@@ -9,7 +9,7 @@ export default function BookApoint() {
    // const [funFactsData, setFunFactsData] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:8080/medical/';
+    const apiUrl = 'https://eikon-api.onrender.com/medical/';
 
     // Make an HTTP GET request to the backend
     axios
