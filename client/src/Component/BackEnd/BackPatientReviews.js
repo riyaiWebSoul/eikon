@@ -48,7 +48,7 @@ function BackPatientReviews() {
   const handleGet = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/patientreview/65127ff99ff116e15901d5ff"
+        "https://eikon-api.onrender.com/patientreview/65127ff99ff116e15901d5ff"
       );
       const data = response.data;
       setResponseData(data);

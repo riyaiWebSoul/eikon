@@ -16,7 +16,7 @@ function BackFooter() {
   const handleGet = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/footer/6516a3de9043681689488233`
+        `https://eikon-api.onrender.com/footer/6516a3de9043681689488233`
       ); // Include the ID in the URL
       const data = response.data;
       setResponseData(data);

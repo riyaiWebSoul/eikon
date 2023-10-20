@@ -12,7 +12,7 @@ function BackView() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/enquiry`);
+      const response = await axios.get(`https://eikon-api.onrender.com/enquiry`);
       const data = response.data;
       setResponseData(data);
     } catch (error) {

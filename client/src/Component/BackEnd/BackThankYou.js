@@ -19,7 +19,7 @@ function BackThankYou() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/Home/${id}`); // Include the ID in the URL
+      const response = await axios.get(`https://eikon-api.onrender.com/Home/${id}`); // Include the ID in the URL
       const data = response.data;
       setResponseData(data);
       setTitle(data.title); // Set the title in the input field

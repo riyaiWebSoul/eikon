@@ -28,7 +28,7 @@ export default function ContactForm() {
       // Prevent the form from submitting automatically
       setSubmitting(true); // Set form submission state to true
   
-      const response = await axios.post(https://eikon-api.onrender.com/enquiry', values);
+      const response = await axios.post('https://eikon-api.onrender.com/enquiry', values);
       navigate('/thank')
       console.log(response.data);
       // Optionally, you can navigate to a success page or show a success message here.

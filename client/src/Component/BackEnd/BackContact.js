@@ -25,7 +25,7 @@ function BackContact() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/footer/${id}`); // Include the ID in the URL
+      const response = await axios.get(`https://eikon-api.onrender.com/footer/${id}`); // Include the ID in the URL
       const data = response.data;
       setResponseData(data);
       setTitle(data.title); // Set the title in the input field

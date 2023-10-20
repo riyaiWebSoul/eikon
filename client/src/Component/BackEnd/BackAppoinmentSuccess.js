@@ -24,7 +24,7 @@ function BackAppointmentSuccess() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/appointments`);
+      const response = await axios.get(`https://eikon-api.onrender.com/appointments`);
       const data = response.data;
       setResponseData(data);
     } catch (error) {

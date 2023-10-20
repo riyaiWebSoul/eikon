@@ -16,7 +16,7 @@ function BackServiceMedical() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/medical/650d8a004a0a2ffd8152e4d3  `); // Include the ID in the URL
+      const response = await axios.get(`https://eikon-api.onrender.com/medical/650d8a004a0a2ffd8152e4d3  `); // Include the ID in the URL
       const data = response.data;
       setResponseData(data);
       setTitle(data.MedicalPage.title); // Set the title in the input field

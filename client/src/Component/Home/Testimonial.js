@@ -65,7 +65,7 @@ export default function Testimonial() {
                               <figure className="mb-0 d-inline-block">
                               
                                 <img
-                                  src={`http://localhost:8080/imageUploads/${item.image}`}
+                                  src={`https://eikon-api.onrender.com/imageUploads/${item.image}`}
                                   alt="auther-img"
                                   className="img-fluid"
                                 />

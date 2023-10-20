@@ -24,7 +24,7 @@ function BackendHealing() {
 
   const handleGet = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/healingTouch/6512680bf1696448ae389b12`);
+      const response = await axios.get(`https://eikon-api.onrender.com/healingTouch/6512680bf1696448ae389b12`);
       const data = response.data;
       setResponseData(data);
       setTitle(data.title);

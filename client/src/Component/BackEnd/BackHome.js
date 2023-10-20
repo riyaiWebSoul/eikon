@@ -14,7 +14,7 @@ const BackHome = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get(`http://localhost:8080/loginId`);
+      const response = await axios.get(`https://eikon-api.onrender.com/loginId`);
       const data = response.data;
 
       if (data.length > 0 && password === data[0].password && email === data[0].email) {

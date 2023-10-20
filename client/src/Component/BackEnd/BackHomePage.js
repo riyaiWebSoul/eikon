@@ -21,11 +21,11 @@ function BackHomePage() {
   const handleGet = async () => {
     try {
       // Make a GET request to retrieve the list of images
-      const imagesListResponse = await axios.get('http://localhost:8080/listImages');
+      const imagesListResponse = await axios.get('https://eikon-api.onrender.com/listImages');
       const list = imagesListResponse.data;
 
       // Make a GET request to retrieve the data for a specific ID
-      const response = await axios.get('http://localhost:8080/home/650d4595f2c62afdc75b54ba');
+      const response = await axios.get('https://eikon-api.onrender.com/home/650d4595f2c62afdc75b54ba');
       const data = response.data;
 
       // Update the state variables with the retrieved data
