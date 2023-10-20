@@ -28,7 +28,7 @@ export default function BookingAppointment() {
       // Prevent the form from submitting automatically
       setSubmitting(true); // Set form submission state to true
   
-      const response = await axios.post('http://localhost:8080/appointments', values);
+      const response = await axios.post('https://eikon-api.onrender.com/appointments', values);
       navigate('/success')
       console.log(response.data);
       // Optionally, you can navigate to a success page or show a success message here.
