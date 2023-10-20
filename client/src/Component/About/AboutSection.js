@@ -13,7 +13,7 @@
 
       useEffect(() => {
          // Define the backend API endpoint URL
-         const apiUrl = 'http://localhost:8080/about/';
+         const apiUrl = 'https://eikon-api.onrender.com/about/';
    
          // Make an HTTP GET request to the backend
          axios.get(apiUrl)
