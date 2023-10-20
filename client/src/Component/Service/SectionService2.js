@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function SectionService2() {
-  const [jsonData, setJsonData] = useState({}); // Initialize jsonData as an object, not an array.
+  const [jsonData, setJsonData] = useState({}); 
 
   useEffect(() => {
     const apiUrl = 'https://eikon-api.onrender.com/mapingEcommerce';
