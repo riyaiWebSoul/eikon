@@ -20,7 +20,7 @@ export default function Banner() {
         console.log(imageName);
         
         // Make an HTTP GET request to fetch images
-        const imageUrl = `http://localhost:8080/imageUploads/${imageName}`;
+        const imageUrl = `https://eikon-api.onrender.com/imageUploads/${imageName}`;
         setImages(imageUrl);
       })
       .catch((error) => {
