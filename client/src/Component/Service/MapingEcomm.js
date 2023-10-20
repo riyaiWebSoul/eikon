@@ -6,7 +6,7 @@ export default function MapingEcomm() {
   const [jsonData, setJsonData] = useState([]);
 
   useEffect(() => {
-   const apiUrl = 'http://localhost:8080/mapingEcommerce';
+   const apiUrl = 'https://eikon-api.onrender.com/mapingEcommerce';
 
    // Make an HTTP GET request to the backend
    // Make an HTTP GET request to the backend
