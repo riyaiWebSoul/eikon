@@ -11,7 +11,7 @@ export default function Testimonial() {
 
   useEffect(() => {
     // Define the backend API endpoint URL
-    const apiUrl = 'http://localhost:8080/PatientReview/';
+    const apiUrl = 'https://eikon-api.onrender.com/PatientReview/';
    
    
     // Make an HTTP GET request to the backend
