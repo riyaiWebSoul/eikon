@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function TeamSection() {
  
   const [drTeam, setDrTeam] = useState([]);
+  const [images, setImages] = useState("");
 
   useEffect(() => {
     // Define the backend API endpoint URL
@@ -17,6 +18,10 @@ export default function TeamSection() {
         const data = response.data;
         console.log(response.data);
         setDrTeam(...data);
+        const imageName = data[0].section.imageSrc; // Get the image name from the fetched data
+        console.log(imageName);
+        const imageUrl = `https://eikon-api.onrender.com/imageUploads/${imageName}`;
+        setImages(imageUrl);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -32,7 +37,7 @@ export default function TeamSection() {
                                     <div className="professional-box-item text-center">
                                         <a href="team-detail.html">
                                             <figure className="mb-0">
-                                                <img src={drTeam.image} alt="professional-box-img" className="img-fluid rounded-circle" />
+                                                <img src={images} alt="professional-box-img" className="img-fluid rounded-circle" />
                                             </figure>
                                             <h5>{drTeam.Name}</h5>
                                             <small className="d-block">{drTeam.Post}</small>
