@@ -16,7 +16,7 @@ export default function Banner() {
         const data = response.data;
         console.log("JSON data:", data);
         setJsonData(data[0]);
-        const imageName = data[0].section.imageSrc; // Get the image name from the fetched data
+        const imageName = data[0].section?.imageSrc; // Get the image name from the fetched data
         console.log(imageName);
         
         // Make an HTTP GET request to fetch images
