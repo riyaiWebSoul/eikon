@@ -7,7 +7,7 @@ export default function Banner() {
   const [images, setImages] = useState("");
 
   useEffect(() => {
-    const apiUrl = "https://eikon-api.onrender.com/imageUploads/home/";
+    const apiUrl = "https://eikon-api.onrender.com/home/";
 
     // Make an HTTP GET request to the backend for JSON data
     axios
