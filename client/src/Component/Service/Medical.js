@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Medical12 from '../../assets/images/Medical12.jpeg';
 
 export default function Medical() {
-  const [jsonData, setJsonData] = useState([]);
+   
   const[data,setData]=useState([])
 
   useEffect(() => {
@@ -13,7 +12,7 @@ export default function Medical() {
     axios
       .get(apiUrl)
       .then((response) => {
-        setJsonData(response.data);
+        
         setData(response.data[0].MedicalPage.section2)
       })
       .catch((error) => {
