@@ -4,6 +4,7 @@ import Medical12 from '../../assets/images/Medical12.jpeg';
 
 export default function Medical() {
   const [jsonData, setJsonData] = useState([]);
+  const[data,setData]=useState([])
 
   useEffect(() => {
     const apiUrl = 'https://eikon-api.onrender.com/medical/';
@@ -13,6 +14,7 @@ export default function Medical() {
       .get(apiUrl)
       .then((response) => {
         setJsonData(response.data);
+        setData(response.data[0].MedicalPage.section2)
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -23,25 +25,20 @@ export default function Medical() {
     <div>
       <section>
         <div className="w-100 float-left py-5 quality-system-con">
-          <div className="container">
-            {jsonData.map((item, index) => (
-              <div key={item._id} className="row">
+        <div className="container">
+            {data.map((item, index) => (
+              <div className="row" key={index}>
                 <div className="col-lg-6 col-md-6">
                   <div className=" position-relative text-center">
                     <figure className="mb-4">
-                      <img src={Medical12} alt="quality-system-img" className="img-fluid human-img" />
+                      <img src={`https://eikon-api.onrender.com/imageUploads/${item.Image}`} alt="quality-system-img" className="img-fluid human-img" />
                     </figure>
                   </div>
                 </div>
-
                 <div className="col-lg-6 col-md-6 d-flex align-items-center">
                   <div className="quality-system-left-con">
-                    {item.MedicalPage && item.MedicalPage.section2 && (
-                      <>
-                        <p className='mb-2'>{item.MedicalPage.section2.description}</p>
-                        <p className=''>{item.MedicalPage.section2.subDescription}</p>
-                      </>
-                    )}
+                    <p className='mb-2'>{item.description}</p>
+                    <p className=''>{item.description2}</p>
                   </div>
                 </div>
               </div>
