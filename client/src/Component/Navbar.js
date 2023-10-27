@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from 'react'
-import LOGO from '../assets/images/Logosss.png'
 import pdf1 from '../assets/images/IDEATOR.pdf'
 import pdf2 from '../assets/images/IDEATOR-FP (1).pdf'
 import pdf3 from '../assets/images/iDEATOR-DWS.pdf'
@@ -8,7 +7,19 @@ import axios from 'axios'
 
 export default function Navbar() {
    const [jsonData, setJsonData] = useState([]);
+   const[logoImages,setLogoImages]=useState([])
 
+   const handleGet = async () => {
+      try {
+        const response = await axios.get('https://eikon-api.onrender.com/portfolio/653b54e7e507da41183ec74d');
+ 
+        setLogoImages(response.data.logos[0].logoImages);
+      } catch (error) {
+        console.error('Error making GET request:', error);
+        // Handle errors here.
+      }
+    };
+console.log(logoImages)
    useEffect(() => {
       const apiUrl = 'https://eikon-api.onrender.com/footer/';
       // Make an HTTP GET request to the backend
@@ -21,13 +32,21 @@ export default function Navbar() {
         .catch((error) => {
           console.error('Error fetching data:', error);
         });
+        handleGet()
     }, []);
 
   return (
     <div>
         {/*  <!-- navbar-start --> */}
         <nav className="navbar navbar-expand-lg navbar-light">
-                  <Link className="navbar-brand" to="/"><img src={LOGO}  alt="logo-img" className="img-fluid" /></Link>
+                  <Link className="navbar-brand" to="/">
+                     {logoImages.map((imgSrc, index) => (
+                        <img src={`https://eikon-api.onrender.com/imageUploads/${imgSrc}`}  width={'100%'}
+                  alt={`${index + 1}`}      
+                  style={{ cursor: 'pointer' }} />
+    
+                ))}
+                     </Link>
                   <button className="navbar-toggler p-0 collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                   <span className="navbar-toggler-icon"></span>
