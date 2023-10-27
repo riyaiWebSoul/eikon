@@ -1,6 +1,6 @@
    import React,{useState,useEffect} from 'react'
    import axios from 'axios'
-   import img2 from '../../assets/images/run-20221119101612544.png'
+ 
   
    export default function AboutSection() {
 

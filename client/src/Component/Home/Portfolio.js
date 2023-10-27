@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
+import axios from 'axios'
 import img1 from '../../assets/images/1(7).jpg'
 import img2 from '../../assets/images/cervical.PNG'
 import img3 from '../../assets/images/Balappa Kurale 1.bmp'
@@ -6,13 +7,25 @@ import img4 from '../../assets/images/Balappa Kurale 2.bmp'
 import img5 from '../../assets/images/spine.PNG'
 import img6 from '../../assets/images/run-20221119100130576.png'
 import img7 from '../../assets/images/run-20221119101612544.png'
-// import img8 from '../../assets/images/run-20221119104940482.png'
-// import video1 from '../../assets/images/measurement demo.mp4'
+ 
 
 export default function Portfolio() {
     const [activeTab, setActiveTab] = useState('*'); // Default active tab
-
     const [modalImage, setModalImage] = useState(null);
+    const [videos, setVideos] = useState([]);
+    const [images, setImages] = useState([]);
+    const [newImage, setNewImage] = useState('');
+  
+    const handleGet = async () => {
+      try {
+        const response = await axios.get('https://eikon-api.onrender.com/portfolio/653b54e7e507da41183ec74d');
+        setVideos(response.data.videos);
+        setImages(response.data.images);
+      } catch (error) {
+        console.error('Error making GET request:', error);
+        // Handle errors here.
+      }
+    };
   
     const openModal = (imgSrc) => {
       setModalImage(imgSrc);
@@ -31,6 +44,7 @@ export default function Portfolio() {
       { label: 'Video', filter: '.corporate' },
     ];
   
+    useEffect(()=>{handleGet()},[])
     return (
     
     <div>
@@ -69,10 +83,10 @@ export default function Portfolio() {
         {activeTab === '*' && <div>
             
             <div className='row gy-4'>
-            {[img1, img2, img3, img4 ,img5 ,img6 , img7   ].map((imgSrc, index) => (
+            {images.map((imgSrc, index) => (
                   
                   <div className='col-lg-3 col-md-4 col-12 mt-4' key={index}>
-                        <img src={imgSrc}  width={'100%'}
+                        <img src={`https://eikon-api.onrender.com/imageUploads/${imgSrc}`}  width={'100%'}
                   alt={`${index + 1}`}
                   onClick={() => openModal(imgSrc)}
                   style={{ cursor: 'pointer' }} />
@@ -128,10 +142,10 @@ export default function Portfolio() {
   {activeTab === '.personal' && (
         <div>
           <div className='row gy-4'>
-            {[img1, img2, img3, img4].map((imgSrc, index) => (
+            {images.map((imgSrc, index) => (
               <div className='col-lg-3 col-md-4 col-12 mt-4' key={index}>
                 <img
-                  src={imgSrc}
+                  src={`https://eikon-api.onrender.com/imageUploads/${imgSrc}`}
                   width={'100%'}
                   alt={` ${index + 1}`}
                   onClick={() => openModal(imgSrc)}
