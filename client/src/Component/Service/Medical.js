@@ -37,7 +37,7 @@ export default function Medical() {
                 <div className="col-lg-6 col-md-6 d-flex align-items-center">
                   <div className="quality-system-left-con">
                     <p className='mb-2'>{item.description}</p>
-                    <p className=''>{item.description2}</p>
+                    <p className=''>{item.subDescription}</p>
                   </div>
                 </div>
               </div>

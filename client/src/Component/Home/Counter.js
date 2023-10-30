@@ -35,7 +35,7 @@ export default function Counter() {
                 <div key={index} className="col-lg-3 col-md-6 col-6 pl-0 pr-0 border-right-0">
                   <div className="fun-facts-box-item d-sm-flex align-items-sm-center">
                     <figure className="mb-0 d-inline-block">
-                      <img src={index === 0 ? img1 : index === 1 ? img2 : index === 2 ? img3 : img4} alt={`fun-facts-icon${index + 1}`} className="img-fluid" />
+                      <img src={`https://eikon-api.onrender.com/imageUploads/${item.image}`} alt={`fun-facts-icon${index + 1}`} className="img-fluid" />
                     </figure>
                     <div className="fun-facts-item-content d-inline-block">
                       <div className="position-relative fun-facts-item-title d-inline-block">
